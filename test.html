@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Image from Microservice</title>
+</head>
+<body>
+    <h1>Welcome to the File Access Page</h1>
+    
+    <p>Click on the link below to access the image:</p>
+
+    <!-- Link to the image served by the Flask microservice -->
+    <a href="http://127.0.0.1:8080/blog/section/project/chat-app/chat-app-icon.png" target="_blank">
+        Click here to view the Chat App icon
+    </a>
+
+    <p>If the link is not working, make sure the server is running, and the image exists at the specified path.</p>
+
+    <!-- Image tag to display the image directly on the page -->
+    <h2>Directly Embedded Image:</h2>
+    <img src="http://127.0.0.1:8080/blog/section/project/chat-app/chat-app-icon.png" alt="Chat App Icon" width="200">
+</body>
+</html>
