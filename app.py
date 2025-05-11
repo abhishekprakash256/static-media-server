@@ -17,7 +17,7 @@ def home():
     Returns:
         str: A simple HTML string greeting the user.
     """
-    return "<h1> Welcome to the server </h1>"
+    return "<h1> Welcome to the server </h1>"  
 
 @app.route('/blog/section/<category>/<subfolder>/<filename>', methods=['GET'])
 def serve_file(category, subfolder, filename):
