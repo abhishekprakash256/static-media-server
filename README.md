@@ -87,7 +87,8 @@ flask run --host=0.0.0.0 --port=8080
 Or for production:
 
 ```bash
-gunicorn app:app --bind 0.0.0.0:5000
+gunicorn -w 4 -b 0.0.0.0:8080 app:app_wsgi
+
 ```
 
 ## 📤 Uploading Files (From Local)
