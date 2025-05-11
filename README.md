@@ -18,18 +18,20 @@ On your EC2 or server:
 
 uploads/
 └── blog/
-    ├── project/
-    │   ├── ai/
-    │   └── web/
-    ├── tech/
-    │   ├── flask/
-    │   └── docker/
-    └── life/
-    │   ├── philosphy/
-    │   └── docker/
-    ├── Research/
-    ├── travel/
-    └── food/
+    └── section/
+        ├── project/
+        │   ├── ai/
+        │   └── web/
+        ├── tech/
+        │   ├── flask/
+        │   └── docker/
+        ├── life/
+        │   ├── philosphy/
+        │   └── docker/
+        ├── Research/
+        ├── travel/
+        └── food/
+
 
 ```
 
@@ -37,9 +39,11 @@ uploads/
 
 ```
 
-/blog/section/project/ai/your\_image.jpg
+/blog/section/project/ai/your_image.jpg
 /blog/section/tech/docker/docker101.png
-/blog/section/life/travel/paris-trip.png
+/blog/section/life/philosphy/thoughts.png
+/blog/section/travel/europe-trip.png
+
 
 ```
 
@@ -47,7 +51,8 @@ Each URL maps to a file in the server like:
 
 ```
 
-/uploads/blog/<category>/<subfolder>/<filename>
+/uploads/blog/section/<category>/<subfolder>/<filename>
+
 
 ````
 
@@ -74,6 +79,9 @@ Update the `BASE_UPLOAD_DIR` in `app.py` to match your file storage path.
 
 ```bash
 python app.py
+
+flask run --host=0.0.0.0 --port=8080
+
 ```
 
 Or for production:
@@ -87,7 +95,8 @@ gunicorn app:app --bind 0.0.0.0:5000
 Use `scp` to upload:
 
 ```bash
-scp path/to/image.jpg ec2-user@your-ec2-ip:/home/ec2-user/uploads/project/ai/
+scp path/to/image.jpg ec2-user@your-ec2-ip:/home/ec2-user/uploads/blog/section/project/ai/
+
 ```
 
 ## 🛡️ Optional Enhancements
