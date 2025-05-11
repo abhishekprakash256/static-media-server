@@ -11,23 +11,35 @@ ALLOWED_CATEGORIES = ['project', 'tech', 'life', 'Research']
 
 @app.route('/')
 def home():
+    """
+    Home route to check the server status.
+    
+    Returns:
+        str: A simple HTML string greeting the user.
+    """
     return "<h1> Welcome to the server </h1>"
-
-
-@app.route('/static/<filename>')
-def serve_static_file(filename):
-    """
-    The test route to serve static files from the 'static' directory.
-    """
-
-    print("in serve_static_file")  # Debug print to check if this route is hit
-
-    return send_from_directory('static', filename)
-
 
 @app.route('/blog/section/<category>/<subfolder>/<filename>', methods=['GET'])
 def serve_file(category, subfolder, filename):
+    """
+    Serve a requested file from the static media directory.
 
+    This route checks if the requested category is valid and if the file exists in the
+    corresponding folder. If both conditions are met, the file is served to the client.
+    Otherwise, a 404 error is raised.
+
+    Args:
+        category (str): The category of the file (e.g., 'project', 'tech', etc.).
+        subfolder (str): The subfolder where the file is stored.
+        filename (str): The name of the file to be served.
+
+    Returns:
+        Response: A Flask response containing the file if it exists, or a 404 error if not.
+
+    Raises:
+        404: If the category is not allowed or the file does not exist.
+    """
+    
     print("in blog function")  # Debug print to check if this route is hit
 
     if category not in ALLOWED_CATEGORIES:
@@ -50,4 +62,10 @@ def serve_file(category, subfolder, filename):
 app_wsgi = app
 
 if __name__ == '__main__':
+    """
+    Starts the Flask application server for local development.
+
+    This is only used when running the app directly and is not required in a production environment.
+    The server listens on all available interfaces (0.0.0.0) and uses port 8080.
+    """
     app.run(debug=True, host='0.0.0.0', port=8080)
