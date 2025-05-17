@@ -4,10 +4,11 @@ import os
 app = Flask(__name__)
 
 # Root directory for static media
-BASE_UPLOAD_DIR = './blog/section'  # Make sure this is correct
+BASE_UPLOAD_DIR = '/home/ubuntu/static-media-server/blog/section'  # Make sure this is correct
 
 # Allowed top-level categories
 ALLOWED_CATEGORIES = ['project', 'tech', 'life', 'Research']
+
 
 @app.route('/')
 def home():
@@ -19,9 +20,8 @@ def home():
     """
     return "<h1> Welcome to the server </h1>"  
 
-@app.route('/test')
-def test():
-    return send_file('/home/ubuntu/static-media-server/blog/section/project/federated-learning/federated-learning-flow.png')
+
+
 
 @app.route('/blog/section/<category>/<subfolder>/<path:filename>', methods=['GET'])
 def serve_file(category, subfolder, filename):
@@ -62,8 +62,12 @@ def serve_file(category, subfolder, filename):
         print(f"File not found at {file_path}")  # Debug print if file doesn't exist
         abort(404, description="File not found.")
 
+
+
 # Gunicorn will use this
 app_wsgi = app
+
+
 
 if __name__ == '__main__':
     """
