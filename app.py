@@ -4,7 +4,7 @@ import os
 app = Flask(__name__)
 
 # Root directory for static media
-BASE_UPLOAD_DIR = '/home/ubuntu/static-media-server/blog/section'  # Make sure this is correct
+BASE_UPLOAD_DIR = './blog/section'  # Make sure this is correct
 
 # Allowed top-level categories
 ALLOWED_CATEGORIES = ['project', 'tech', 'life', 'Research']
@@ -19,7 +19,6 @@ def home():
         str: A simple HTML string greeting the user.
     """
     return "<h1> Welcome to the server </h1>"  
-
 
 
 
