@@ -9,6 +9,7 @@ BASE_UPLOAD_DIR = './blog/section'  # Make sure this is correct
 # Allowed top-level categories
 ALLOWED_CATEGORIES = ['project', 'tech', 'life', 'Research']
 
+
 @app.route('/')
 def home():
     """
@@ -19,7 +20,9 @@ def home():
     """
     return "<h1> Welcome to the server </h1>"  
 
-@app.route('/blog/section/<category>/<subfolder>/<filename>', methods=['GET'])
+
+
+@app.route('/blog/section/<category>/<subfolder>/<path:filename>', methods=['GET'])
 def serve_file(category, subfolder, filename):
     """
     Serve a requested file from the static media directory.
@@ -58,8 +61,12 @@ def serve_file(category, subfolder, filename):
         print(f"File not found at {file_path}")  # Debug print if file doesn't exist
         abort(404, description="File not found.")
 
+
+
 # Gunicorn will use this
 app_wsgi = app
+
+
 
 if __name__ == '__main__':
     """
