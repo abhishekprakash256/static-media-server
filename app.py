@@ -1,5 +1,7 @@
-from flask import Flask, send_from_directory, abort
+from flask import Flask,request, jsonify, send_from_directory, abort
+from flask_cors import cross_origin  # Not CORS app-wide
 import os
+import json
 
 app = Flask(__name__)
 
@@ -19,6 +21,37 @@ def home():
         str: A simple HTML string greeting the user.
     """
     return "<h1> Welcome to the server </h1>"  
+
+
+@app.route('/message/submit', methods=['POST'])
+@cross_origin()  # Allow CORS on this route only
+def message_submit():
+    data = request.get_json()
+    
+    if not data:
+        
+        return jsonify({"error": "No data provided"}), 400
+
+    # Load existing messages if file exists, otherwise start with empty list
+    messages = []
+    # Check if the file exists and load it
+    if os.path.exists('message.json'):
+        with open('message.json', 'r') as f:
+            try:
+                messages = json.load(f)
+                if not isinstance(messages, list):
+                    messages = []
+            except json.JSONDecodeError:
+                messages = []
+
+    # Append the new message
+    messages.append(data)
+
+    # Save back to the file
+    with open('message.json', 'w') as f:
+        json.dump(messages, f, indent=2)
+
+    return jsonify({"message": "Data received", "data": data}), 200
 
 
 
@@ -68,6 +101,7 @@ app_wsgi = app
 
 
 
+
 if __name__ == '__main__':
     """
     Starts the Flask application server for local development.
@@ -76,3 +110,5 @@ if __name__ == '__main__':
     The server listens on all available interfaces (0.0.0.0) and uses port 8080.
     """
     app.run(debug=True, host='0.0.0.0', port=8080)
+
+

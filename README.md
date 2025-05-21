@@ -98,7 +98,12 @@ Use `scp` to upload:
 ```bash
 scp path/to/image.jpg ec2-user@your-ec2-ip:/home/ec2-user/uploads/blog/section/project/ai/
 
+
 ```
+
+## Notes 
+
+clear the message json before deploy in production and make it overwrite
 
 ## 🛡️ Optional Enhancements
 
