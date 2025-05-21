@@ -1,4 +1,5 @@
-from flask import Flask, send_from_directory, abort
+from flask import Flask,request, jsonify, send_from_directory, abort
+from flask_cors import cross_origin  # Not CORS app-wide
 import os
 
 app = Flask(__name__)
@@ -19,6 +20,19 @@ def home():
         str: A simple HTML string greeting the user.
     """
     return "<h1> Welcome to the server </h1>"  
+
+
+@app.route('/message/submit', methods=['POST'])
+@cross_origin()  # Allow CORS on this route only
+def api():
+    data = request.get_json()
+    if not data:
+        
+        return jsonify({"error": "No data provided"}), 400
+
+    print({"message": "Data received", "data": data})
+    
+    return jsonify({"message": "Data received", "data": data}), 200
 
 
 
