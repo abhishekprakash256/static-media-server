@@ -55,7 +55,7 @@ def message_submit():
 
 
 
-@app.route('/blog/section/<category>/<subfolder>/<path:filename>', methods=['GET'])
+@app.route('/static/blog/section/<category>/<subfolder>/<path:filename>', methods=['GET'])
 def serve_file(category, subfolder, filename):
     """
     Serve a requested file from the static media directory.
