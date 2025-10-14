@@ -24,8 +24,8 @@ def home():
 
 #https://api.meabhi.me/{microservice}/v{version}/{resource}/{optional-action}
 #static-media-server/v1/user/message/submit
+#@cross_origin()  # Allow CORS on this route only
 @app.route('static-media-server/v1/user/message/submit', methods=['POST'])
-@cross_origin()  # Allow CORS on this route only
 def message_submit():
     data = request.get_json()
     
