@@ -12,7 +12,7 @@ BASE_UPLOAD_DIR = './blog/section'  # Make sure this is correct
 ALLOWED_CATEGORIES = ['project', 'tech', 'life', 'Research']
 
 
-@app.route('/')
+@app.route('/static-media-server')
 def home():
     """
     Home route to check the server status.
@@ -22,8 +22,9 @@ def home():
     """
     return "<h1> Welcome to the server </h1>"  
 
-
-@app.route('/message/submit', methods=['POST'])
+#https://api.meabhi.me/{microservice}/v{version}/{resource}/{optional-action}
+#static-media-server/v1/user/message/submit
+@app.route('static-media-server/v1/user/message/submit', methods=['POST'])
 @cross_origin()  # Allow CORS on this route only
 def message_submit():
     data = request.get_json()
