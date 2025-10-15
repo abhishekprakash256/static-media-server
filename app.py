@@ -55,8 +55,8 @@ def message_submit():
     return jsonify({"message": "Data received", "data": data}), 200
 
 
-
-@app.route('/static/blog/section/<category>/<subfolder>/<path:filename>', methods=['GET'])
+#https://api.meabhi.me/{microservice}/v{version}/{resource}/{optional-action}
+@app.route('static-media-server/v1/static/blog/section/<category>/<subfolder>/<path:filename>', methods=['GET'])
 def serve_file(category, subfolder, filename):
     """
     Serve a requested file from the static media directory.
