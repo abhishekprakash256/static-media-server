@@ -12,7 +12,7 @@ BASE_UPLOAD_DIR = './blog/section'  # Make sure this is correct
 ALLOWED_CATEGORIES = ['project', 'tech', 'life', 'Research']
 
 
-@app.route('/static-media-server')
+@app.route('/static-media-server/')
 def home():
     """
     Home route to check the server status.
